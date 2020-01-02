@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成功</title>
+</head>
+<body>
+<form action="/myresulet/" method="post">
+    <input type="submit" value="点我">
+    {% csrf_token %}
+</form>
+<h5>{{ message }}</h5>
+</body>
+</html>

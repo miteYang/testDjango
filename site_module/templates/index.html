@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #login{
+            width: 362px;
+            height: 162px;
+            border: 1px solid #f10180;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 100px;
+            background: snow;
+        }
+        #login-header{
+            width: 100%;
+            height: 50px;
+            border: 1px solid black;
+        }
+        #login-font{
+            color: #f10180;
+        }
+        #login-body{
+            width: 100%;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        function showUser(){
+            document.getElementById('usertip').innerHTML='<b style="color:lightgray;">用户名不能为空</b>';
+        }
+        function showPwd(){
+            document.getElementById('pwdtip').innerHTML='<b style="color:lightgray;">密码必须大于6位</b>';
+        }
+        function checkUser(){
+            var name=document.getElementById('user').value;
+            if(name==''){
+                document.getElementById('usertip').innerHTML='<b style="color:#f10180">用户名不能为空</b>';
+                return false;
+            }else{
+                document.getElementById('usertip').innerHTML='<b style="color:green">ok</b>';
+                return true;
+            }
+        }
+        function checkPwd(){
+            var pwdLen=document.getElementById('pwd').value.length;
+            if(pwdLen<6){
+                document.getElementById('pwdtip').innerHTML='<b style="color:#f10180">密码必须大于6位</b>';
+                return false;
+            }else{
+                 document.getElementById('pwdtip').innerHTML='<b style="color:green">ok</b>';
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+<form action="/detail/" method="post">
+    <!-- 设置跳转 url 指定post -->
+    <div id="login">
+        <div id="login-header">
+            <h2 id="login-font">欢迎登录</h2>
+        </div>
+        <div id="login-body">
+            <table border="1" style="width: 100%;padding-top: 50px">
+                <tr>
+                    <td>用户名：</td>
+                    <td>
+                        <input type="text" id="user" placeholder="输入用户名" name="username"
+                            onfocus="showUser()" onblur="checkUser()">
+                    </td>
+                    <span id="usertip"></span><br/>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td>
+                        <input type="password" id="pwd" placeholder="密码" name="passwd"
+                            onfocus="showPwd()" onblur="checkPwd()">
+                    </td>
+                    {{error}}<br/>
+                    <span id="pwdtip"></span><br/>
+                </tr>
+                <input type="submit" value="登录">
+            </table>
+        </div>
+    </div>
+    {% csrf_token %}
+</form>
+</body>
+</html>
